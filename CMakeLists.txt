@@ -33,7 +33,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 message ("cxx Flags:" ${CMAKE_CXX_FLAGS})
  
 # Sub-directories where more CMakeLists.txt exist
-add_subdirectory(ysc)
+add_subdirectory(engine)
 
 # Turn on CMake testing capabilities
 enable_testing()
