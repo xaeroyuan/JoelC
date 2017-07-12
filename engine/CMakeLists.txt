@@ -1,13 +1,13 @@
 cmake_minimum_required (VERSION 3.2)
 
 set (SRC
-	main.cpp
+	win_main.cpp
 )
 source_group("" FILES ${SRC})
 
 set (SYSTEM
-	system/system.cpp
-	system/system.h
+	system/win_system.cpp
+	system/win_system.h
 )
 source_group("System" FILES ${SYSTEM})
 
@@ -24,7 +24,7 @@ set (RENDER
 source_group("Graphics" FILES ${RENDER})
 
 set (ALL_SRC
-	 ${SRC}
+	${SRC}
 	${SYSTEM}
 	${INPUT}
 	${RENDER}
