@@ -1,3 +1,0 @@
- <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='@BW_USERFILE_CONFIGNAME@|@BW_USERFILE_PLATFORM@'">
-    <LocalDebuggerWorkingDirectory>@BW_USERFILE_WORKING_DIRECTORY@</LocalDebuggerWorkingDirectory>
-  </PropertyGroup>
