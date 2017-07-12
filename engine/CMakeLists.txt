@@ -12,8 +12,8 @@ set (SYSTEM
 source_group("System" FILES ${SYSTEM})
 
 set (INPUT
-	input/input.cpp
-	input/input.h
+	input/keyboard_input.cpp
+	input/keyboard_input.h
 )
 source_group("Input" FILES ${INPUT})
 

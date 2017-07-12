@@ -1,6 +1,5 @@
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files:
-#include <windows.h>
+#include <memory>
+#include "system/win_system.h"
 
 /**
  * The main application entry point for Windows platforms.
@@ -14,22 +13,20 @@
 int WINAPI WinMain( HINSTANCE hInInstance, HINSTANCE hPrevInstance, char* lpCmdLine, int nShowCmd )
 {
 	//const wchar_t* CmdLine = ::GetCommandLineW();
+	std::unique_ptr<WinSystem> system(new WinSystem);
 
-	int ErrorLevel = 0;
-
-#if 0
-		// call main
-#else
-	__try
-
-		{
-			ErrorLevel = 1;
-			// call main
-	}
-	__except (GetExceptionCode())
+	if (!system)
 	{
-		ErrorLevel = 1;
+		return 0;
 	}
-#endif
-	return ErrorLevel;
+
+	// Initialize and run the system object.
+	if (system->Initialize())
+	{
+		system->Run();
+	}
+
+	// Shutdown and release the system object.
+	system->Shutdown();
+	return 0;
 }

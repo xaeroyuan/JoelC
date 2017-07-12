@@ -31,7 +31,9 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 # Command to output information to the console
 # Useful for displaying errors, warnings, and debugging
 message ("cxx Flags:" ${CMAKE_CXX_FLAGS})
- 
+
+ADD_DEFINITIONS( -DUNICODE -D_UNICODE )
+
 # Sub-directories where more CMakeLists.txt exist
 add_subdirectory(engine)
 
