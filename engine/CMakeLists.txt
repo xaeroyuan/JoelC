@@ -42,4 +42,4 @@ set_property(TARGET engine PROPERTY FOLDER "executables")
  
 # Properties->General->Output Directory
 set_target_properties(engine PROPERTIES
-                      RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+                      RUNTIME_OUTPUT_DIRECTORY ${AJ_ENGINE_BIN_DIR})

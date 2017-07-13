@@ -1,38 +1,47 @@
 cmake_minimum_required (VERSION 3.2)
 
+# Set the engine source directory
+SET( AJ_ENGINE_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR} )
+
+# Set serach location for CMake include files
+SET( CMAKE_MODULE_PATH "${AJ_ENGINE_SOURCE_DIR}/cmake_module" )
+ 
+# Override the default CMake configs: Debug Release MinSizeRel RelWithDebInfo
+# This must appear before ENABLE_LANGUAGE to override the defaults
+SET( CMAKE_CONFIGURATION_TYPES Debug;Release
+	CACHE STRING "Semicolon separated list of supported configuration types"
+	FORCE )
+
+INCLUDE( AJPlatformOptions )
+
+# Detect clang-cl
+IF( ${CMAKE_C_COMPILER_ID} MATCHES "Clang" )
+	SET( CLANG_CL 1 )
+ENDIF()
+
+# Set compiler and linker options
+INCLUDE( AJGlobalCompilerAndLinkerOptions )
+
+# Ensure we have a functioning compiler. Work around CMake failing to detect
+# that the compiler is unknown, do this by making sure there's some flags
+IF( NOT CMAKE_CXX_FLAGS )
+	MESSAGE( FATAL_ERROR "CMake failed to find a valid compiler!" )
+ENDIF()
+
+MESSAGE( STATUS "Compiler: ${AJ_COMPILER_TOKEN}" )
+
 # Maps to Visual Studio solution file (Tutorial.sln)
 # The solution will have all targets (exe, lib, dll) 
 # as Visual Studio projects (.vcproj)
-project (xaero)
- 
+PROJECT (Xaero_${AJ_PLATFORM})
+
+# Binary output location
+GET_FILENAME_COMPONENT( AJ_ENGINE_BIN_DIR "${PROJECT_SOURCE_DIR}/bin" REALPATH )
+
 # Turn on the ability to create folders to organize projects (.vcproj)
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-if(CMAKE_CONFIGURATION_TYPES) # multiconfig generator?
-    set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE) 
-else()
-    if(NOT CMAKE_BUILD_TYPE)
-        message("Defaulting to release build.")
-        set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
-    endif()
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY HELPSTRING "Choose the type of build")
-    # set the valid options for cmake-gui drop-down list
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug;Release")
-endif()
-
-set(APP_OUTDIR )
- 
-# Set compiler flags and options. 
-# Here it is setting the Visual Studio warning level to 4
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
- 
-# Command to output information to the console
-# Useful for displaying errors, warnings, and debugging
-message ("cxx Flags:" ${CMAKE_CXX_FLAGS})
-
-ADD_DEFINITIONS( -DUNICODE -D_UNICODE )
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Sub-directories where more CMakeLists.txt exist
 add_subdirectory(engine)

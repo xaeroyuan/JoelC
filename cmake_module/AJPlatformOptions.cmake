@@ -1,0 +1,26 @@
+# Enable C and C++ to force compiler detection so we can determine 32 or 64 bit
+ENABLE_LANGUAGE( CXX )
+
+# Determine platform
+IF( WIN32 )
+	SET( AJ_PLATFORM_WINDOWS ON )
+	IF( CMAKE_SIZEOF_VOID_P EQUAL 4 )
+		SET( AJ_PLATFORM "win32" )
+	ELSEIF( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+		SET( AJ_PLATFORM "win64" )
+	ENDIF()
+ELSEIF( APPLE )
+	SET( AJ_PLATFORM_MAC ON )
+	SET( AJ_PLATFORM "mac" )
+	SET( AJ_COMPILER_TOKEN "clang" )
+ELSE()
+	MESSAGE( FATAL_ERROR "Only Windows builds are currently supported." )
+ENDIF()
+
+IF( CMAKE_SIZEOF_VOID_P EQUAL 4 )
+	SET( AJ_ARCH_32 ON )
+ELSEIF( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+	SET( AJ_ARCH_64 ON )
+ELSE()
+	MESSAGE( FATAL_ERROR "Only 32 and 64 bit builds are supported." )
+ENDIF()
