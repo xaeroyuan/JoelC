@@ -1,7 +1,9 @@
 #include "win_system.h"
-#include "../input/keyboard_input.h"
-#include "../render/graphics.h"
+#include "input/keyboard_input.h"
+#include "graphics.h"
 
+namespace AJ
+{
 WinSystem::WinSystem()
 {
 	m_Input = 0;
@@ -275,7 +277,7 @@ void WinSystem::ShutdownWindows()
 
 	return;
 }
-
+}
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	switch (umessage)

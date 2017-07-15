@@ -1,5 +1,11 @@
 #pragma once
-#include <windows.h>
+#include "render/directx3d11.h"
+#include <memory>
+
+namespace AJ
+{
+
+class DirectX11;
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -24,6 +30,6 @@ private:
 	bool Render();
 
 private:
-
+	std::unique_ptr<DirectX11> m_pD3D11;
 };
-
+}

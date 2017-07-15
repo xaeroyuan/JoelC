@@ -22,6 +22,7 @@ ENDIF()
 # Set compiler and linker options
 INCLUDE( AJGlobalCompilerAndLinkerOptions )
 
+
 # Ensure we have a functioning compiler. Work around CMake failing to detect
 # that the compiler is unknown, do this by making sure there's some flags
 IF( NOT CMAKE_CXX_FLAGS )
@@ -36,12 +37,14 @@ MESSAGE( STATUS "Compiler: ${AJ_COMPILER_TOKEN}" )
 PROJECT (Xaero_${AJ_PLATFORM})
 
 # Binary output location
-GET_FILENAME_COMPONENT( AJ_ENGINE_BIN_DIR "${PROJECT_SOURCE_DIR}/bin" REALPATH )
+GET_FILENAME_COMPONENT( AJ_ENGINE_BIN_DIR "${AJ_ENGINE_SOURCE_DIR}/bin" REALPATH )
 
 # Turn on the ability to create folders to organize projects (.vcproj)
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
+
+INCLUDE_DIRECTORIES( ${AJ_ENGINE_SOURCE_DIR}/engine )
 
 # Sub-directories where more CMakeLists.txt exist
 add_subdirectory(engine)

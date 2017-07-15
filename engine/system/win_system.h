@@ -3,6 +3,10 @@
 // Windows Header Files:
 #include <windows.h>
 
+
+namespace AJ
+{
+
 class KeyboardInput;
 class Graphics;
 
@@ -35,7 +39,7 @@ private:
 	KeyboardInput* m_Input;
 	Graphics* m_Graphics;
 };
-
+}
 
 /////////////////////////
 // FUNCTION PROTOTYPES //
@@ -46,4 +50,6 @@ static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 /////////////
 // GLOBALS //
 /////////////
-static WinSystem* ApplicationHandle = 0;
+static AJ::WinSystem* ApplicationHandle = 0;
+
+

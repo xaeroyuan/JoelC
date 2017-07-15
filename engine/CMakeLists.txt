@@ -1,7 +1,13 @@
 cmake_minimum_required (VERSION 3.2)
 
+INCLUDE_DIRECTORIES( $ENV{DXSDK_DIR}/Include )
+LINK_DIRECTORIES( $ENV{DXSDK_DIR}/Lib/x64 )
+
+
 set (SRC
 	win_main.cpp
+	graphics.cpp
+	graphics.h
 )
 source_group("" FILES ${SRC})
 
@@ -18,8 +24,8 @@ set (INPUT
 source_group("Input" FILES ${INPUT})
 
 set (RENDER
-	render/graphics.cpp
-	render/graphics.h
+	render/directx3d11.cpp
+	render/directx3d11.h
 )
 source_group("Graphics" FILES ${RENDER})
 

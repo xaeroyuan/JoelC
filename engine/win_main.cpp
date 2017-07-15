@@ -13,7 +13,7 @@
 int WINAPI WinMain( HINSTANCE hInInstance, HINSTANCE hPrevInstance, char* lpCmdLine, int nShowCmd )
 {
 	//const wchar_t* CmdLine = ::GetCommandLineW();
-	std::unique_ptr<WinSystem> system(new WinSystem);
+	std::unique_ptr<AJ::WinSystem> system(new AJ::WinSystem);
 
 	if (!system)
 	{
