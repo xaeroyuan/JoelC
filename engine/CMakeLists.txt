@@ -26,8 +26,14 @@ source_group("Input" FILES ${INPUT})
 set (RENDER
 	render/directx3d11.cpp
 	render/directx3d11.h
+	render/model.cpp
+	render/model.h
+	render/shader.cpp
+	render/shader.h
+	render/camera.cpp
+	render/camera.h
 )
-source_group("Graphics" FILES ${RENDER})
+source_group("Render" FILES ${RENDER})
 
 set (ALL_SRC
 	${SRC}
